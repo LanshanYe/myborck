@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-// var db = require('./../model/db');  //require的路径是我们的db模块相对于本文件的路径
-
 router.route('/')
     .all(function(req, res, next) {
         // runs for all HTTP verbs first

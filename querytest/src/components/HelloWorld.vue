@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
-    <div @click="getdata">get</div>
-    <div @click="postdata">post</div>
+    <div @click="getdata">登录</div>
+    <div @click="postdata">注册</div>
+    <input v-model="temp.phone" type="text" placeholder="手机号码">
+    <input v-model="temp.password" type="password" placeholder="密码">
   </div>
 </template>
 
@@ -11,15 +13,24 @@ export default {
   props: {
     msg: String
   },
+    data() {
+      return {
+          temp: {
+              phone: '',
+              password: ''
+          }
+      }
+    },
     methods: {
       getdata() {
-          this.$r.get('/admin/login').then(re => {
-              console.log(re)          }).catch(errs => {
+          this.$r.get('/login').then(re => {
+              console.log(re)
+          }).catch(errs => {
               console.log(errs)
           })
       },
         postdata() {
-            this.$r.post('/admin/register', {name: 'fangyuan', phone: '123456'}).then(re => {
+            this.$r.post('/register', this.temp).then(re => {
                 console.log(re)
             }).catch(errs => {
                 console.log(errs)
